@@ -10,6 +10,7 @@ class LogInPage extends StatefulWidget {
 
 class _LogInPageState extends State<LogInPage> {
   bool check = true;
+  bool isPasswordHidden = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,18 +22,20 @@ class _LogInPageState extends State<LogInPage> {
               height: 30,
             ),
             Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const StartPage()));
-                    },
-                    icon: const Icon(Icons.arrow_back))),
-            const SizedBox(
-              height: 20,
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const StartPage(),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.arrow_back),
+              ),
             ),
+            const SizedBox(height: 20),
             Row(
               children: const [
                 Padding(
@@ -63,7 +66,9 @@ class _LogInPageState extends State<LogInPage> {
                 ),
               ),
             ),
-            const TextField(),
+            const TextField(
+              decoration: InputDecoration(hintText: "Enter email"),
+            ),
             const SizedBox(
               height: 40,
             ),
@@ -80,8 +85,18 @@ class _LogInPageState extends State<LogInPage> {
                 ),
               ),
             ),
-            const TextField(
-              decoration: InputDecoration(),
+            TextField(
+              obscureText: isPasswordHidden,
+              decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isPasswordHidden = !isPasswordHidden;
+                        });
+                      },
+                      icon: Icon(isPasswordHidden
+                          ? Icons.visibility_off
+                          : Icons.visibility))),
             ),
             const SizedBox(
               height: 20,
@@ -90,6 +105,9 @@ class _LogInPageState extends State<LogInPage> {
               children: [
                 Checkbox(
                   value: check,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
                   onChanged: ((value) {
                     setState(() {
                       check = !check;

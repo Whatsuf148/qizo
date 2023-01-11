@@ -28,64 +28,66 @@ class StartPage extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: const Color(0xff6949FF),
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: InkWell(
-                  onTap: () {},
-                  child: const Text(
-                    "GET STARTED",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          const CommonButton(
+            textColor: Colors.white,
+            backgroundColor: Colors.green,
+            buttonText: "Get Started",
+            
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: ((context) => const LogInPage())));
-              },
-              child: Container(
-                height: 50,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: const Color(0xffF0EDFF),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Text(
-                    "I ALREADY HAVE AN ACCOUNT",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xff6949FF),
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+           CommonButton(
+            textColor: Colors.black,
+            backgroundColor: Colors.white,
+            buttonText: "Log in ",
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const LogInPage()));
+            },
+          )
         ],
+      ),
+    );
+  }
+}
+
+class CommonButton extends StatelessWidget {
+  final Color textColor;
+  final Color backgroundColor;
+  final String buttonText;
+  final Function()? onTap;
+
+  const CommonButton({
+    Key? key,
+    required this.textColor,
+    required this.backgroundColor,
+    required this.buttonText,
+    this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        height: 50,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: InkWell(
+            onTap: onTap,
+            child: Text(
+              buttonText,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: textColor,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
