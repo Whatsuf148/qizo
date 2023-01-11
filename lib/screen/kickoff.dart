@@ -32,14 +32,14 @@ class StartPage extends StatelessWidget {
             textColor: Colors.white,
             backgroundColor: Colors.green,
             buttonText: "Get Started",
-            
           ),
-           CommonButton(
+          CommonButton(
             textColor: Colors.black,
             backgroundColor: Colors.white,
             buttonText: "Log in ",
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const LogInPage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const LogInPage()));
             },
           )
         ],
