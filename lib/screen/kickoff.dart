@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qizo/screen/getstarted.dart';
 import 'package:qizo/screen/login.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -26,11 +27,16 @@ class StartPage extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          const CommonButton(
-            textColor: Colors.white,
-            backgroundColor: Colors.green,
-            buttonText: "Get Started",
-          ),
+          CommonButton(
+              textColor: Colors.white,
+              backgroundColor: Colors.green,
+              buttonText: "Get Started",
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => const GetStartedPage())));
+              }),
           CommonButton(
             textColor: Colors.black,
             backgroundColor: Colors.blue,
