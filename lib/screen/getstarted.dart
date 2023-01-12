@@ -82,11 +82,25 @@ class GetStartedPage extends StatelessWidget {
                             Container(
                               height: 80,
                               width: 100,
-                              color: Colors.red,
+                              clipBehavior: Clip.hardEdge,
+                              decoration: const BoxDecoration(
+                                color: Colors.red,
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                  "photo/personal.jpg",
+                                )),
+                              ),
                             ),
                             const SizedBox(
                               width: 40,
-                            )
+                            ),
+                            Text(
+                              " Hello",
+                              style: GoogleFonts.poppins(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
                           ],
                         ),
                       ),
