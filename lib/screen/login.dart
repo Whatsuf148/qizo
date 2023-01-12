@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qizo/screen/kickoff.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -37,29 +38,33 @@ class _LogInPageState extends State<LogInPage> {
             ),
             const SizedBox(height: 20),
             Row(
-              children: const [
+              children: [
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
                     "Hello There",
-                    style: TextStyle(
-                      fontSize: 33,
+                    style: GoogleFonts.poppins(
+                      fontSize: 28,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                )
+                ),
+                Image.asset(
+                  'photo/wavinghand.jpg',
+                  height: 50,
+                ),
               ],
             ),
             const SizedBox(
               height: 20,
             ),
-            const Align(
+            Align(
               alignment: Alignment.topLeft,
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
                   "Email",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -72,13 +77,13 @@ class _LogInPageState extends State<LogInPage> {
             const SizedBox(
               height: 40,
             ),
-            const Align(
+            Align(
               alignment: Alignment.topLeft,
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
                   "Password",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -88,6 +93,7 @@ class _LogInPageState extends State<LogInPage> {
             TextField(
               obscureText: isPasswordHidden,
               decoration: InputDecoration(
+                  hintText: 'Enter The Password',
                   suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -115,10 +121,10 @@ class _LogInPageState extends State<LogInPage> {
                   }),
                   activeColor: const Color(0XFF6E50FF),
                 ),
-                const Text(
+                Text(
                   "Remember Me",
-                  style: TextStyle(
-                    fontSize: 18,
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -132,12 +138,12 @@ class _LogInPageState extends State<LogInPage> {
             ),
             TextButton(
                 onPressed: () {},
-                child: const Text(
+                child: Text(
                   "Forgot Password?",
-                  style: TextStyle(
-                    fontSize: 28,
-                    color: Color(0xff745BE7),
+                  style: GoogleFonts.poppins(
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
+                    color: const Color(0xff795CFE),
                   ),
                 )),
             const SizedBox(

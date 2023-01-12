@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:qizo/screen/login.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({super.key});
@@ -17,12 +16,11 @@ class StartPage extends StatelessWidget {
             height: 350,
             width: 350,
           ),
-          const Text(
+          Text(
             " Create Share & Play\nQuizzes Whenever and\nWhereever you want",
-            style: TextStyle(
+            style: GoogleFonts.poppins(
               fontSize: 24,
-              fontWeight: FontWeight.bold,
-              wordSpacing: sqrt1_2,
+              fontWeight: FontWeight.w700,
             ),
           ),
           const SizedBox(
@@ -35,7 +33,7 @@ class StartPage extends StatelessWidget {
           ),
           CommonButton(
             textColor: Colors.black,
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.blue,
             buttonText: "Log in ",
             onTap: () {
               Navigator.push(context,
@@ -74,18 +72,15 @@ class CommonButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(8.0),
           child: InkWell(
             onTap: onTap,
-            child: Text(
-              buttonText,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: textColor,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            child: Text(buttonText,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                )),
           ),
         ),
       ),
