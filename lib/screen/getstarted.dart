@@ -2,8 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:qizo/screen/kickoff.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class GetStartedPage extends StatelessWidget {
+List<Map<String, dynamic>> initialDetailList = [
+  {
+    "title": "What type of account do you \nlike to create? 👶🏼",
+    "description": "You can skip it if you are not sure.",
+    "page": const Page1()
+  },
+  {
+    "title": "Describe a workplace that suits you",
+    "description": "You can skip it if you are not sure.",
+    "page": const Page2()
+  },
+  {
+    "title": "Create an account",
+    "description":
+        "Please complete your profile. Don't worry your data will remain private and only you can see it.",
+    "page": const Page3()
+  },
+];
+
+class GetStartedPage extends StatefulWidget {
   const GetStartedPage({super.key});
+
+  @override
+  State<GetStartedPage> createState() => _GetStartedPageState();
+}
+
+class _GetStartedPageState extends State<GetStartedPage> {
+  final PageController _controller = PageController();
+  double progress = 0.3;
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +39,6 @@ class GetStartedPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            //  SizedBox(
-            //   height: MediaQuery.of(context).padding.top
-            // ),
             SizedBox(
               height: 20,
               child: Stack(
@@ -44,8 +68,8 @@ class GetStartedPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15)),
                       child: LinearProgressIndicator(
                         minHeight: 10,
-                        value: 0.3,
-                        color: Color(0xff5F46E9),
+                        value: progress,
+                        color: const Color(0xff5F46E9),
                         backgroundColor: Colors.grey.withOpacity(0.2),
                       ),
                     ),
@@ -56,66 +80,141 @@ class GetStartedPage extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "What type of account do you \nlike to create? 👶🏼",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Text(
-              "You can skip it if you are not sure",
-              style: GoogleFonts.poppins(
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const SetupBox(
-              boxcolor: Colors.blue,
-              textstring: "Personal",
-              imagename: 'photo/personal.jpg',
-            ),
-            const SetupBox(
-              boxcolor: Colors.orange,
-              textstring: "Teacher",
-              imagename: 'photo/personal.jpg',
-            ),
-            const SetupBox(
-              boxcolor: Color(0xff3BC395),
-              textstring: "Student",
-              imagename: 'photo/personal.jpg',
-            ),
-            const SetupBox(
-              boxcolor: Color(0xffE56771),
-              textstring: "Professional",
-              imagename: 'photo/personal.jpg',
-            ),
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
-                  CommonButton(
-                    textColor: Colors.white,
-                    backgroundColor: Colors.blue,
-                    buttonText: "ok",
-                  )
-                ],
-              ),
+              child: PageView.builder(
+                  controller: _controller,
+                  pageSnapping: false,
+                  itemCount: initialDetailList.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        Text(
+                          initialDetailList[index]['title'],
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(
+                            initialDetailList[index]['description'],
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        initialDetailList[index]['page']
+                      ],
+                    );
+                  }),
+            ),
+            CommonButton(
+              textColor: Colors.white,
+              backgroundColor: Colors.blue,
+              buttonText: "Skip",
+              onTap: () {
+                _controller
+                    .nextPage(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeIn,
+                )
+                    .then((value) {
+                  
+                  setState(() {
+                    print(_controller.page);
+                    progress = (_controller.page! +1) / initialDetailList.length;
+                    print("progress: $progress");
+                  });
+                });
+              },
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class Page1 extends StatelessWidget {
+  const Page1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: const [
+        SetupBox(
+          boxcolor: Colors.blue,
+          textstring: "Personal",
+          imagename: 'photo/personal.jpg',
+        ),
+        SetupBox(
+          boxcolor: Colors.orange,
+          textstring: "Teacher",
+          imagename: 'photo/personal.jpg',
+        ),
+        SetupBox(
+          boxcolor: Color(0xff3BC395),
+          textstring: "Student",
+          imagename: 'photo/personal.jpg',
+        ),
+        SetupBox(
+          boxcolor: Color(0xffE56771),
+          textstring: "Professional",
+          imagename: 'photo/personal.jpg',
+        ),
+      ],
+    );
+  }
+}
+
+class Page2 extends StatelessWidget {
+  const Page2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: const [
+        SetupBox(
+          boxcolor: Colors.blue,
+          textstring: "School",
+          imagename: 'photo/personal.jpg',
+        ),
+        SetupBox(
+          boxcolor: Colors.orange,
+          textstring: "Higher Education",
+          imagename: 'photo/personal.jpg',
+        ),
+        SetupBox(
+          boxcolor: Color(0xff3BC395),
+          textstring: "Teams",
+          imagename: 'photo/personal.jpg',
+        ),
+        SetupBox(
+          boxcolor: Color(0xffE56771),
+          textstring: "Business",
+          imagename: 'photo/personal.jpg',
+        ),
+      ],
+    );
+  }
+}
+
+class Page3 extends StatelessWidget {
+  const Page3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [Text("Full Name"), TextField()],
     );
   }
 }
