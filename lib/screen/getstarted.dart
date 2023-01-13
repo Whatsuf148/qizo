@@ -8,87 +8,113 @@ class GetStartedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 50,
-          ),
-          Row(
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            //  SizedBox(
+            //   height: MediaQuery.of(context).padding.top
+            // ),
+            SizedBox(
+              height: 20,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const StartPage()));
-                    },
-                    icon: const Icon(Icons.arrow_back)),
+                            builder: (context) => const StartPage(),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.arrow_back),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      clipBehavior: Clip.hardEdge,
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15)),
+                      child: LinearProgressIndicator(
+                        minHeight: 10,
+                        value: 0.3,
+                        color: Color(0xff5F46E9),
+                        backgroundColor: Colors.grey.withOpacity(0.2),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "What type of account do you \nlike to create? 👶🏼",
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          Text(
-            "You can skip it if you are not sure",
-            style: GoogleFonts.poppins(
-              fontSize: 16,
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const SetupBox(
-            boxcolor: Colors.blue,
-            textstring: "Personal",
-            imagename: 'photo/personal.jpg',
-          ),
-          const SetupBox(
-            boxcolor: Colors.orange,
-            textstring: "Teacher",
-            imagename: '',
-          ),
-          const SetupBox(
-            boxcolor: Color(0xff3BC395),
-            textstring: "Student",
-            imagename: 'photo/personal.jpg',
-          ),
-          const SetupBox(
-            boxcolor: Color(0xffE56771),
-            textstring: "Professional",
-            imagename: 'photo/personal.jpg',
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
-                CommonButton(
-                    textColor: Colors.white,
-                    backgroundColor: Colors.blue,
-                    buttonText: "ok")
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "What type of account do you \nlike to create? 👶🏼",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
-          ),
-        ],
+            const SizedBox(
+              height: 15,
+            ),
+            Text(
+              "You can skip it if you are not sure",
+              style: GoogleFonts.poppins(
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const SetupBox(
+              boxcolor: Colors.blue,
+              textstring: "Personal",
+              imagename: 'photo/personal.jpg',
+            ),
+            const SetupBox(
+              boxcolor: Colors.orange,
+              textstring: "Teacher",
+              imagename: 'photo/personal.jpg',
+            ),
+            const SetupBox(
+              boxcolor: Color(0xff3BC395),
+              textstring: "Student",
+              imagename: 'photo/personal.jpg',
+            ),
+            const SetupBox(
+              boxcolor: Color(0xffE56771),
+              textstring: "Professional",
+              imagename: 'photo/personal.jpg',
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: const [
+                  CommonButton(
+                    textColor: Colors.white,
+                    backgroundColor: Colors.blue,
+                    buttonText: "ok",
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
