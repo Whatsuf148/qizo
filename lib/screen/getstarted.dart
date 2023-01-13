@@ -14,16 +14,20 @@ class GetStartedPage extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const StartPage()));
-                },
-                icon: const Icon(Icons.arrow_back)),
+          Row(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const StartPage()));
+                    },
+                    icon: const Icon(Icons.arrow_back)),
+              ),
+            ],
           ),
           const SizedBox(
             height: 30,
@@ -74,15 +78,16 @@ class GetStartedPage extends StatelessWidget {
             imagename: 'photo/personal.jpg',
           ),
           Expanded(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
-              CommonButton(
-                  textColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                  buttonText: "ok")
-            ],
-          ))
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: const [
+                CommonButton(
+                    textColor: Colors.white,
+                    backgroundColor: Colors.blue,
+                    buttonText: "ok")
+              ],
+            ),
+          ),
         ],
       ),
     );
