@@ -65,7 +65,7 @@ class _LogInPageState extends State<LogInPage> {
                 "Email",
                 style: GoogleFonts.poppins(
                   fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w300,
                 ),
               ),
             ),
@@ -84,7 +84,7 @@ class _LogInPageState extends State<LogInPage> {
                 "Password",
                 style: GoogleFonts.poppins(
                   fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w300,
                 ),
               ),
             ),
