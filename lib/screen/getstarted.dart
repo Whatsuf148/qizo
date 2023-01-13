@@ -7,23 +7,6 @@ class GetStartedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> contents = [
-      {
-        "title": "",
-        "icon": Icons.abc,
-        "color": Colors.red
-      },
-      {
-        "title": "",
-        "icon": "",
-        "color": Colors.red
-      },
-      {
-        "title": "",
-        "icon": Icons.abc,
-        "color": Colors.red
-      },
-    ];
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -53,18 +36,11 @@ class GetStartedPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "What type of account do you \nlike to create?" "",
+                "What type of account do you \nlike to create? 👶🏼",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: Image.asset(
-                  'photo/boyemoji.jpg',
-                  height: 24,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             ],
