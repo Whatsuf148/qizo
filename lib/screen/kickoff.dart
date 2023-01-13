@@ -85,7 +85,6 @@ class CommonButton extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
                   fontSize: 24,
-                  fontWeight: FontWeight.bold,
                 )),
           ),
         ),
