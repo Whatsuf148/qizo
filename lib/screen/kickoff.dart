@@ -35,7 +35,7 @@ class StartPage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: ((context) =>  GetStartedPage())));
+                        builder: ((context) => const GetStartedPage())));
               }),
           CommonButton(
             textColor: Colors.black,

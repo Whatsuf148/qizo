@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:qizo/screen/kickoff.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -86,34 +87,36 @@ class _GetStartedPageState extends State<GetStartedPage> {
                   pageSnapping: false,
                   itemCount: initialDetailList.length,
                   itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Text(
-                          initialDetailList[index]['title'],
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.poppins(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: Text(
-                            initialDetailList[index]['description'],
+                    return SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Text(
+                            initialDetailList[index]['title'],
                             textAlign: TextAlign.center,
                             style: GoogleFonts.poppins(
-                              fontSize: 16,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        initialDetailList[index]['page']
-                      ],
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Text(
+                              initialDetailList[index]['description'],
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          initialDetailList[index]['page']
+                        ],
+                      ),
                     );
                   }),
             ),
@@ -128,11 +131,9 @@ class _GetStartedPageState extends State<GetStartedPage> {
                   curve: Curves.easeIn,
                 )
                     .then((value) {
-                  
                   setState(() {
-                    print(_controller.page);
-                    progress = (_controller.page! +1) / initialDetailList.length;
-                    print("progress: $progress");
+                    progress =
+                        (_controller.page! + 1) / initialDetailList.length;
                   });
                 });
               },
@@ -213,8 +214,61 @@ class Page3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [Text("Full Name"), TextField()],
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Full Name",
+                style: GoogleFonts.poppins(),
+              ),
+            ),
+            const TextField(
+              decoration: InputDecoration(
+                hintText: "Enter Your Name",
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Date of Birth",
+                style: GoogleFonts.poppins(),
+              ),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                hintText: "Select Your Date of Birth",
+                suffixIcon: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.calendar_month_rounded)),
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "Enter Your Phone Number",
+                style: GoogleFonts.poppins(),
+              ),
+            ),
+            TextField(
+              decoration: const InputDecoration(
+                hintText: "Select Your Date of Birth",
+              ),
+              keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -262,10 +316,12 @@ class SetupBox extends StatelessWidget {
             const SizedBox(
               width: 40,
             ),
-            Text(
-              textstring,
-              style: GoogleFonts.poppins(
-                fontSize: 24,
+            Flexible(
+              child: Text(
+                textstring,
+                style: GoogleFonts.poppins(
+                  fontSize: 24,
+                ),
               ),
             ),
           ],
